@@ -9,14 +9,19 @@ Bu proqram iscilerle is veren arasindaki elaqeni qurmaq ucundur.
 		
 	1.1 Isciler ve ya is verenler qeydiyyatdan kecdikleri zaman baslangic olaraq 
 		- Username
+		
 		- Email (emailin formati regex le yoxlanilmalidir, format sehvdirse yeniden duzgun daxil etmesini istemelidir, Duzgun: muradheyderov@gmail.com)
+		
 		- Status: 1. Isci 2. Isveren
+		
 		- Sifre (
 		   -en azi bir boyuk herf olmalidir, 
                    -bir reqem, bir simvol (_+-/. ve s.) olamlidir, 
                    -maksimum uzunluq 15 simvol, Duzgun: Murad_894
                   )
+		  
 		- tekrar password (yuxaridaki ile eyniliyi yoxlamaq ucun)
+		
 		- 4 simvoldan (reqem ve herf) ibaret random kod (bu kod random olaraq avtomatik yaradilacaq ve userden bu kodun eynisinin yazilmasini teleb edecek, Duzgun: w3Kp, 5Gq7)
 
 2.  Eger isci kimi qeydiyyatdan kecibse esas menyuda bunlar gorsenecek
