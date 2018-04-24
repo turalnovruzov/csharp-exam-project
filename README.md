@@ -9,7 +9,7 @@ Bu proqram iscilerle is veren arasindaki elaqeni qurmaq ucundur.
 		
 	1. Isciler ve ya is verenler qeydiyyatdan kecdikleri zaman baslangic olaraq 
 		* Username
-		* Email (emailin formati regex le yoxlanilmalidir, format sehvdirse yeniden duzgun daxil etmesini istemelidir, Duzgun: muradheyderov@gmail.com)
+		* Email (emailin formati regex le yoxlanilmalidir, format sehvdirse yeniden duzgun daxil etmesini istemelidir, Duzgun: example@gmail.com)
 		* Status:
 			1. Isci
 			2. Isveren
