@@ -1,7 +1,7 @@
 # csharp-exam-project
 C# basics exam project
 
-#HR Match
+# HR Match
 
 Bu proqram iscilerle is veren arasindaki elaqeni qurmaq ucundur.
 
