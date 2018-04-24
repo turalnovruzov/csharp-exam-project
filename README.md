@@ -7,7 +7,7 @@ Bu proqram iscilerle is veren arasindaki elaqeni qurmaq ucundur.
 
 1.  Proqram sayesinde hem isciler hem de is verenler qeydiyyatdan kecir. Proqrama acilan kimi sorusur Sign in, Sign up or Exit. Eger Sign up secilse asagidaki emeliyyatlar olur. 
 		
-	1 Isciler ve ya is verenler qeydiyyatdan kecdikleri zaman baslangic olaraq 
+	1. Isciler ve ya is verenler qeydiyyatdan kecdikleri zaman baslangic olaraq 
 		* Username
 		* Email (emailin formati regex le yoxlanilmalidir, format sehvdirse yeniden duzgun daxil etmesini istemelidir, Duzgun: muradheyderov@gmail.com)
 		* Status:
@@ -71,7 +71,7 @@ Bu proqram iscilerle is veren arasindaki elaqeni qurmaq ucundur.
 	1. Elan yerlesdir (Is veren bir nece elan yerlesdire biler)
 		* Is elanin adi
 		* Sirketin adi
-	    	* Kateqoriya
+		* Kateqoriya
 		* Is barede melumat
 		* Seher
 		* Maas 
