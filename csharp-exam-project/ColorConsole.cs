@@ -4,13 +4,6 @@ namespace csharp_exam_project
 {
     class ColorConsole
     {
-        // Main constructor
-        static ColorConsole()
-        {
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-
         /// <summary>
         /// Clears error line(s) and one additional line before the error line(s) from Console.
         /// </summary>
@@ -57,7 +50,7 @@ namespace csharp_exam_project
         /// Prints to Console with new line at the end
         /// </summary>
         /// <param name="str"></param>
-        public static void WriteLine(string str)
+        public static void WriteLine(string str = "")
         {
             Console.WriteLine(str);
         }

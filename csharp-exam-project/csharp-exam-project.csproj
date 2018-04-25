@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AbstractUser.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DBUtils.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Employer.cs" />
     <Compile Include="LoginAction.cs" />

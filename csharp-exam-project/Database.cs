@@ -4,18 +4,32 @@ using Newtonsoft.Json;
 
 namespace csharp_exam_project
 {
-    static class Database
+    // This is a singleton class
+    class Database
     {
-        private static string fileName = "Users.json";
+        #region SingletonRegion
+        private static Database instance = null;
 
-        public static List<AbstractUser> Users { get; set; }
+        public static Database GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new Database();
+            }
+            return instance;
+        }
+        #endregion
 
-        static Database()
+        private string fileName = "Users.json";
+
+        public List<AbstractUser> Users { get; set; }
+
+        private Database()
         {
             Read();
         }
 
-        public static void Read()
+        public void Read()
         {
             if (File.Exists(fileName))
             {
@@ -26,7 +40,7 @@ namespace csharp_exam_project
             }
         }
 
-        public static void Save()
+        public void Save()
         {
             using (StreamWriter file = new StreamWriter(fileName))
             {
