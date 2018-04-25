@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace csharp_exam_project
+﻿namespace csharp_exam_project
 {
     class Employer : AbstractUser
     {
+        public Employer() { }
 
+        public Employer(string username, string email, string password) : base(username, email, password, UserType.Employer) { }
     }
 }

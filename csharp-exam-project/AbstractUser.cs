@@ -73,5 +73,15 @@ namespace csharp_exam_project
             }
         }
         public UserType Type { get => type; set => type = value; }
+
+        public AbstractUser() { }
+
+        protected AbstractUser(string username, string email, string password, UserType type)
+        {
+            Username = username;
+            Email = email;
+            Password = password;
+            Type = type;
+        }
     }
 }
