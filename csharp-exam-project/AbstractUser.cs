@@ -11,7 +11,6 @@ namespace csharp_exam_project
         private string username;
         private string email;
         private string password;
-        private UserType type;
 
         public string Username
         {
@@ -72,7 +71,7 @@ namespace csharp_exam_project
                 }
             }
         }
-        public UserType Type { get => type; set => type = value; }
+        public UserType Type { get; private set; }
 
         public AbstractUser() { }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace csharp_exam_project
 {
@@ -16,13 +17,18 @@ namespace csharp_exam_project
 
             while (true)
             {
-                ColorConsole.WriteLine("1. Sign in");
-                ColorConsole.WriteLine("2. Sign up");
-                ColorConsole.WriteLine("3. Exit");
-                ColorConsole.WriteLine();
-                ColorConsole.Write("> ");
+                View.WriteLine("1. Sign in");
+                View.WriteLine("2. Sign up");
+                View.WriteLine("3. Exit");
+                View.WriteLine();
+                View.Write("> ");
 
                 input = Console.ReadLine().Trim();
+
+                if (input == "1" || input == "2" || input == "3")
+                {
+                    View.Clear();
+                }
 
                 switch (input)
                 {
@@ -36,7 +42,7 @@ namespace csharp_exam_project
                         exit = true;
                         break;
                     default:
-                        ColorConsole.WriteError("Invalid option.");
+                        View.WriteError("Invalid option.", 2);
                         break;
                 }
 
@@ -53,19 +59,49 @@ namespace csharp_exam_project
 
             while (true)
             {
-                ColorConsole.Write("Username: ");
+                View.Write("Username: ");
                 username = Console.ReadLine();
 
-                ColorConsole.Write("Password: ");
+                View.Write("Password: ");
                 password = Console.ReadLine();
 
+                AbstractUser user = DBUtils.LogInCheck(username, password);
 
+                if (user == null)
+                {
+                    View.WriteError("Username or password incorrect.");
+                    break;
+                }
+                else if (user.Type == UserType.Employee)
+                {
+
+                }
+                else
+                {
+
+                }
             }
         }
 
         private void SignUp()
         {
+            List<int> list = new List<int>();
 
+            string input;
+            AbstractUser user;
+
+            View.WriteLine("Do you want to hire people or get a job? (hire/get)");
+            View.Write("> ");
+
+            while (true)
+            {
+                input = Console.ReadLine().Trim();
+
+                if (input == "hire" || input == "h")
+                {
+
+                }
+            }
         }
     }
 }

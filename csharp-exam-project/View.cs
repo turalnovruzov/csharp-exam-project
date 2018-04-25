@@ -2,7 +2,7 @@
 
 namespace csharp_exam_project
 {
-    class ColorConsole
+    class View
     {
         /// <summary>
         /// Clears error line(s) and one additional line before the error line(s) from Console.
@@ -70,7 +70,7 @@ namespace csharp_exam_project
         /// Prints error to Console.
         /// </summary>
         /// <param name="str"></param>
-        public static void WriteError(string str, int offset = 2)
+        public static void WriteError(string str, int offset = 0)
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
