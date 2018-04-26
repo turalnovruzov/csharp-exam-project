@@ -12,6 +12,7 @@ namespace csharp_exam_project
         private string email;
         private string password;
 
+        public Guid Id { get; private set; }
         public string Username
         {
             get => username;
@@ -23,7 +24,7 @@ namespace csharp_exam_project
                 }
                 else if (value.Length < 5)
                 {
-                    throw new Exception("Username must be at least 5 symbols.");
+                    throw new Exception("Username must be at least 5 characters.");
                 }
                 else
                 {
@@ -63,7 +64,7 @@ namespace csharp_exam_project
                 }
                 else if (!regex.IsMatch(value))
                 {
-                    throw new Exception("Password must contain at least one uppercase letter, one lowercase letter, one digit, one symbol, and length must be between 5 and 15.");
+                    throw new Exception("Password must be at between 5 and 15 characters and contain at least one uppercase letter, one lowercase letter, one digit, one non-alphabetic symbol.");
                 }
                 else
                 {
@@ -73,9 +74,12 @@ namespace csharp_exam_project
         }
         public UserType Type { get; private set; }
 
-        public AbstractUser() { }
+        public AbstractUser()
+        {
+            Id = Guid.NewGuid();
+        }
 
-        protected AbstractUser(string username, string email, string password, UserType type)
+        public AbstractUser(string username, string email, string password, UserType type) : this()
         {
             Username = username;
             Email = email;

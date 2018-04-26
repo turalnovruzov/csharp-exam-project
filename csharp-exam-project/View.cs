@@ -67,23 +67,23 @@ namespace csharp_exam_project
         }
 
         /// <summary>
-        /// Prints error to Console.
+        /// Prints error to Console and waits for User to read and press any key.
         /// </summary>
         /// <param name="str"></param>
-        public static void WriteError(string str, int offset = 0)
+        public static void WriteError(string str)
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
-            Console.WriteLine(str);
+            Console.Write(str);
 
-            Console.ReadKey();
-            ClearLine(offset);
+            Console.ReadKey(true);
+            Clear();
 
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         /// <summary>
-        /// Prints success to Console.
+        /// Prints success to Console and waits for user to press any key.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="vs"></param>

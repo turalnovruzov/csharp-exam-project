@@ -53,7 +53,7 @@
     <Compile Include="DBUtils.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Employer.cs" />
-    <Compile Include="LoginAction.cs" />
+    <Compile Include="MainAction.cs" />
     <Compile Include="PinGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
