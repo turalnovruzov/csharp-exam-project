@@ -1,9 +1,25 @@
-﻿namespace csharp_exam_project
+﻿using System.Collections.Generic;
+using System.Text;
+
+namespace csharp_exam_project
 {
     class Employer : AbstractUser
     {
+        public List<JobPost> JobPosts { get; set; }
+
         public Employer() { }
 
-        public Employer(string username, string email, string password) : base(username, email, password, UserType.Employer) { }
+        public Employer(string username, string emailAddress, string password) : base(username, emailAddress, password, UserType.Employer) { }
+
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+
+            str.AppendLine($"Username:\t{Username}");
+            str.AppendLine($"Email address:\t{EmailAddress}");
+            str.AppendLine("Employer");
+
+            return str.ToString();
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace csharp_exam_project
                         exit = true;
                         break;
                     default:
-                        View.WriteError("Invalid option.");
+                        View.WriteErrorAndClear("Invalid option.");
                         break;
                 }
 
@@ -62,11 +62,11 @@ namespace csharp_exam_project
                 View.Write("Password: ");
                 password = Console.ReadLine();
 
-                AbstractUser user = DBUtils.LogInCheck(username, password);
+                AbstractUser user = DBUserUtils.LogInCheck(username, password);
 
                 if (user == null)
                 {
-                    View.WriteError("Username or password incorrect.");
+                    View.WriteErrorAndClear("Username or password incorrect.");
                     break;
                 }
                 else if (user.Type == UserType.Employee)
@@ -82,8 +82,6 @@ namespace csharp_exam_project
 
         private void SignUpAsEmployer()
         {
-            List<int> list = new List<int>();
-
             string input;
             bool @break = true;
             AbstractUser user = null;
@@ -94,7 +92,8 @@ namespace csharp_exam_project
             {
                 View.WriteLine("Do you want to hire people or get a job? (hire/get)");
                 @break = true;
-
+                
+                View.WriteLine();
                 View.Write("> ");
 
                 input = Console.ReadLine().Trim();
@@ -110,7 +109,7 @@ namespace csharp_exam_project
                 else
                 {
                     @break = false;
-                    View.WriteError("Oh I don't have any other options, sorry. Choose hire or get.");
+                    View.WriteErrorAndClear("Oh I don't have any other options, sorry. Choose hire or get.");
                 }
 
                 if (@break)
@@ -125,6 +124,7 @@ namespace csharp_exam_project
             while (true)
             {
                 View.WriteLine("Enter a username that is at least 5 characters");
+                View.WriteLine();
                 View.Write("> ");
 
                 input = Console.ReadLine().Trim();
@@ -132,11 +132,16 @@ namespace csharp_exam_project
                 try
                 {
                     user.Username = input;
+
+                    if (DBUserUtils.UsernameCheck(input) != null)
+                    {
+                        throw new Exception("This username is already taken.");
+                    }
                     break;
                 }
                 catch (Exception ex)
                 {
-                    View.WriteError(ex.Message);
+                    View.WriteErrorAndClear(ex.Message);
                 }
             }
             #endregion
@@ -146,18 +151,24 @@ namespace csharp_exam_project
             while (true)
             {
                 View.WriteLine("Enter a valid email address (it's better to enter your own email address)");
+                View.WriteLine();
                 View.Write("> ");
 
                 input = Console.ReadLine().Trim();
 
                 try
                 {
-                    user.Email = input;
+                    user.EmailAddress = input;
+
+                    if (DBUserUtils.EmailAddressCheck(input) != null)
+                    {
+                        throw new Exception("This email address is already taken.");
+                    }
                     break;
                 }
                 catch (Exception ex)
                 {
-                    View.WriteError(ex.Message);
+                    View.WriteErrorAndClear(ex.Message);
                 }
             }
             #endregion
@@ -167,6 +178,7 @@ namespace csharp_exam_project
             while (true)
             {
                 View.WriteLine("Enter a password that is between 5 and 15 characters and contains at least one uppercase letter, one lowercase letter, one digit, one non-alphabetic symbol");
+                View.WriteLine();
                 View.Write("> ");
 
                 input = Console.ReadLine().Trim();
@@ -177,7 +189,7 @@ namespace csharp_exam_project
                 }
                 catch (Exception ex)
                 {
-                    View.WriteError(ex.Message);
+                    View.WriteErrorAndClear(ex.Message);
                     continue;
                 }
 
@@ -194,11 +206,71 @@ namespace csharp_exam_project
                 }
                 else
                 {
-                    View.WriteError("That does not match your password.");
+                    View.WriteErrorAndClear("That does not match your password.");
                 }
             }
             #endregion
             View.Clear();
+            #region PIN verification
+            while (true)
+            {
+                string pin = PinGenerator.NewPin();
+
+                View.WriteLine("Rewrite the symbols.");
+                View.WriteLine(pin);
+                View.WriteLine();
+                View.Write("> ");
+
+                input = Console.ReadLine().Trim();
+
+                if (input == pin)
+                {
+                    break;
+                }
+                else
+                {
+                    View.WriteErrorAndClear("Not correct. Try again.");
+                }
+            }
+            #endregion
+            View.Clear();
+            #region Summary
+            while (true)
+            {
+                View.WriteLine(user.ToString());
+                View.WriteLine("Sign up? (y/n)");
+                View.WriteLine();
+                View.Write("> ");
+
+                @break = true;
+                input = Console.ReadLine().Trim().ToLower();
+
+                switch (input)
+                {
+                    case "y":
+                    case "yes":
+                        View.WriteSuccess("You have been successfully registered");
+                        break;
+                    case "n":
+                    case "no":
+                        View.WriteLineAndWait("You have not been registered.");
+                        return;
+                    default:
+                        View.WriteErrorAndClear("You need to choose either yes(y) or no(n).");
+                        @break = false;
+                        break;
+                }
+
+                if (@break)
+                {
+                    break;
+                }
+            }
+            #endregion
+            View.Clear();
+
+            Database.GetInstance().Users.Add(user);
+            Database.GetInstance().Save();
         }
     }
 }

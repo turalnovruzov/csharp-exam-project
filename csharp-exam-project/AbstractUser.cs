@@ -9,10 +9,9 @@ namespace csharp_exam_project
     abstract class AbstractUser
     {
         private string username;
-        private string email;
+        private string emailAddress;
         private string password;
-
-        public Guid Id { get; private set; }
+        
         public string Username
         {
             get => username;
@@ -32,9 +31,9 @@ namespace csharp_exam_project
                 }
             }
         }
-        public string Email
+        public string EmailAddress
         {
-            get => email;
+            get => emailAddress;
             set
             {
                 Regex regex = new Regex(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
@@ -48,7 +47,7 @@ namespace csharp_exam_project
                 }
                 else
                 {
-                    email = value;
+                    emailAddress = value;
                 }
             }
         }
@@ -76,13 +75,12 @@ namespace csharp_exam_project
 
         public AbstractUser()
         {
-            Id = Guid.NewGuid();
         }
 
-        public AbstractUser(string username, string email, string password, UserType type) : this()
+        public AbstractUser(string username, string email, string password, UserType type)
         {
             Username = username;
-            Email = email;
+            EmailAddress = email;
             Password = password;
             Type = type;
         }

@@ -26,6 +26,7 @@ namespace csharp_exam_project
 
         private Database()
         {
+            Users = new List<AbstractUser>();
             Read();
         }
 

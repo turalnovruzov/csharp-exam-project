@@ -47,6 +47,28 @@ namespace csharp_exam_project
         }
 
         /// <summary>
+        /// Prints to Console and waits for the user to press any key.
+        /// </summary>
+        /// <param name="str"></param>
+        public static void WriteAndWait(string str)
+        {
+            Console.Write(str);
+            Console.ReadKey(true);
+        }
+
+        /// <summary>
+        /// Prints to Console and waits for the user to press any key. Method uses the given ConsoleColor.
+        /// </summary>
+        /// <param name="str"></param>
+        public static void WriteAndWait(string str, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(str);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey(true);
+        }
+
+        /// <summary>
         /// Prints to Console with new line at the end
         /// </summary>
         /// <param name="str"></param>
@@ -67,10 +89,46 @@ namespace csharp_exam_project
         }
 
         /// <summary>
+        /// Prints to Console with new line at the end and waits for the user to press any key.
+        /// </summary>
+        public static void WriteLineAndWait(string str)
+        {
+            Console.WriteLine(str);
+            Console.ReadKey(true);
+        }
+
+        /// <summary>
+        /// Prints to Console with new line at the end and waits for the user to press any key. Method uses the given ConsoleColor.
+        /// </summary>
+        /// <param name="str"></param>
+        public static void WriteLineAndWait(string str, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(str);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey(true);
+        }
+
+        /// <summary>
         /// Prints error to Console and waits for User to read and press any key.
         /// </summary>
         /// <param name="str"></param>
         public static void WriteError(string str)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            Console.Write(str);
+
+            Console.ReadKey(true);
+
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        /// <summary>
+        /// Prints error to Console and waits for User to read and press any key, then clears the Console.
+        /// </summary>
+        /// <param name="str"></param>
+        public static void WriteErrorAndClear(string str)
         {
             Console.ForegroundColor = ConsoleColor.Red;
 
@@ -99,7 +157,7 @@ namespace csharp_exam_project
             }
 
             Console.WriteLine();
-            Console.ReadKey();
+            Console.ReadKey(true);
 
             Console.ForegroundColor = ConsoleColor.White;
         }

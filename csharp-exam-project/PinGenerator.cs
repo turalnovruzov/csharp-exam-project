@@ -15,7 +15,7 @@ namespace csharp_exam_project
         /// Generates a random pin with length of 4
         /// </summary>
         /// <returns>The random generated pin</returns>
-        public static string New()
+        public static string NewPin()
         {
             char[] pin = new char[4];
 
