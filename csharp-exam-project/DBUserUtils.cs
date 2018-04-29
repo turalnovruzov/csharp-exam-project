@@ -77,5 +77,42 @@ namespace csharp_exam_project
 
             return null;
         }
+
+        /// <summary>
+        /// Checks all the job posts with Employee.CompareToJob
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <return>Returns a list of recommended JobPosts</returns>
+        public static List<JobPost> GetRecommendedJobs(Employee employee)
+        {
+            Database db = Database.GetInstance();
+            List<JobPost> list = new List<JobPost>();
+
+            foreach (var user in db.Employers)
+            {
+                foreach (var job in user.JobPosts)
+                {
+                    if (employee.CV.CompareToJob(job))
+                    {
+                        list.Add(job);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public static List<JobPost> GetJobPosts()
+        {
+            List<JobPost> list = new List<JobPost>();
+            Database db = Database.GetInstance();
+
+            foreach (var user in db.Employers)
+            {
+                list.AddRange(user.JobPosts);
+            }
+
+            return list;
+        }
     }
 }

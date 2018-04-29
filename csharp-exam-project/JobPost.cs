@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace csharp_exam_project
 {
     class JobPost
     {
         private string phoneNumber;
-        private string heading;
+        private string header;
         private string companyName;
-        private string locationCity;
+        private string city;
+        private uint salary;
+        private uint age;
 
-        public string Heading
+        public string Header
         {
-            get => heading;
+            get => header;
             set
             {
                 if (value.Length > 0)
                 {
-                    heading = value;
+                    header = value;
                 }
                 else
                 {
@@ -46,14 +44,14 @@ namespace csharp_exam_project
         }
         public JobCategory Category { get; set; }
         public string Description { get; set; }
-        public string LocationCity
+        public string City
         {
-            get => locationCity;
+            get => city;
             set
             {
-                if (value.Length > 0 && value.All(char.IsLetter))
+                if (value.Length > 0)
                 {
-                    locationCity = value;
+                    city = value;
                 }
                 else
                 {
@@ -61,8 +59,36 @@ namespace csharp_exam_project
                 }
             }
         }
-        public uint Salary { get; set; }
-        public uint Age { get; set; }
+        public uint Salary
+        {
+            get => salary;
+            set
+            {
+                if (value > 0)
+                {
+                    salary = value;
+                }
+                else
+                {
+                    throw new Exception("Salary must be more than 0.");
+                }
+            }
+        }
+        public uint Age
+        {
+            get => age;
+            set
+            {
+                if (value > 0)
+                {
+                    age = value;
+                }
+                else
+                {
+                    throw new Exception("Age must be more than 0.");
+                }
+            }
+        }
         public StudyDegree StudyDegree { get; set; }
         public WorkExperience WorkExperience { get; set; }
         public string PhoneNumber

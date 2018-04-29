@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace csharp_exam_project
 {
@@ -11,8 +9,10 @@ namespace csharp_exam_project
     {
         private string name;
         private string surname;
-        private string locationCity;
+        private string city;
         private string phoneNumber;
+        private uint age;
+        private uint minimumSalary;
 
         public string Name
         {
@@ -45,18 +45,32 @@ namespace csharp_exam_project
             }
         }
         public Gender Gender { get; set; }
-        public uint Age { get; set; }
+        public uint Age
+        {
+            get => age;
+            set
+            {
+                if (value > 0)
+                {
+                    age = value;
+                }
+                else
+                {
+                    throw new Exception("Age must be more than 0.");
+                }
+            }
+        }
         public StudyDegree StudyDegree { get; set; }
         public WorkExperience WorkExperience { get; set; }
         public JobCategory Category { get; set; }
-        public string LocationCity
+        public string City
         {
-            get => locationCity;
+            get => city;
             set
             {
                 if (value.Length > 0 && value.All(char.IsLetter))
                 {
-                    locationCity = value;
+                    city = value;
                 }
                 else
                 {
@@ -64,7 +78,21 @@ namespace csharp_exam_project
                 }
             }
         }
-        public uint MinimumSalary { get; set; }
+        public uint MinimumSalary
+        {
+            get => minimumSalary;
+            set
+            {
+                if (value > 0)
+                {
+                    minimumSalary = value;
+                }
+                else
+                {
+                    throw new Exception("Minumum salary must be more than 0.");
+                }
+            }
+        }
         public string PhoneNumber
         {
             get => phoneNumber;
@@ -83,7 +111,7 @@ namespace csharp_exam_project
 
         public bool CompareToJob(JobPost job)
         {
-            if (Category == job.Category && MinimumSalary <= job.Salary && LocationCity == job.LocationCity && WorkExperience == job.WorkExperience && Age == job.Age && StudyDegree == job.StudyDegree)
+            if (Category == job.Category && MinimumSalary <= job.Salary && City == job.City && WorkExperience == job.WorkExperience && Age == job.Age && StudyDegree == job.StudyDegree)
             {
                 return true;
             }
@@ -98,8 +126,9 @@ namespace csharp_exam_project
             str.AppendLine($"Surname: {Surname}");
             str.AppendLine($"Gender: {Gender}");
             str.AppendLine($"Age: {Age}");
-            str.AppendLine($"Study degree {nameof(StudyDegree)}");
+            str.AppendLine($"Study degree: {Enum.GetName(typeof(StudyDegree), StudyDegree)}");
 
+            str.Append("Work Experience: ");
             switch (WorkExperience)
             {
                 case WorkExperience.LessThanOneYear:
@@ -118,8 +147,8 @@ namespace csharp_exam_project
                     break;
             }
 
-            str.AppendLine($"Category: {nameof(Category)}");
-            str.AppendLine($"City: {LocationCity}");
+            str.AppendLine($"Category: {Enum.GetName(typeof(JobCategory), Category)}");
+            str.AppendLine($"City: {City}");
             str.AppendLine($"Minimum salary: {MinimumSalary}");
             str.AppendLine($"Phone number: {PhoneNumber}");
 

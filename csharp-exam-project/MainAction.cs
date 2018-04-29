@@ -33,7 +33,7 @@ namespace csharp_exam_project
                         break;
                     case "2":
                         View.Clear();
-                        SignUpAsEmployer();
+                        SignUp();
                         break;
                     case "3":
                         exit = true;
@@ -71,7 +71,8 @@ namespace csharp_exam_project
                 }
                 else if (user.Type == UserType.Employee)
                 {
-
+                    View.Clear();
+                    new EmployeeAction().Initialize(user as Employee);
                 }
                 else
                 {
@@ -80,7 +81,7 @@ namespace csharp_exam_project
             }
         }
 
-        private void SignUpAsEmployer()
+        private void SignUp()
         {
             string input;
             bool @break = true;
@@ -254,6 +255,7 @@ namespace csharp_exam_project
                     case "n":
                     case "no":
                         View.WriteLineAndWait("You have not been registered.");
+                        View.Clear();
                         return;
                     default:
                         View.WriteErrorAndClear("You need to choose either yes(y) or no(n).");
@@ -269,8 +271,18 @@ namespace csharp_exam_project
             #endregion
             View.Clear();
 
-            Database.GetInstance().Users.Add(user);
-            Database.GetInstance().Save();
+            Database db = Database.GetInstance();
+
+            if (user.Type == UserType.Employee)
+            {
+                db.Employees.Add(user as Employee);
+                db.Save();
+            }
+            else
+            {
+                db.Employers.Add(user as Employer);
+                db.Save();
+            }
         }
     }
 }

@@ -6,9 +6,12 @@ namespace csharp_exam_project
     {
         public CVPost CV { get; set; }
 
-        public Employee() { }
+        public Employee() : base(UserType.Employee) { }
 
-        public Employee(string username, string emailAddress, string password) : base(username, emailAddress, password, UserType.Employee) { }
+        public Employee(string username, string emailAddress, string password) : base(username, emailAddress, password, UserType.Employee)
+        {
+            CV = new CVPost();
+        }
 
         public override string ToString()
         {

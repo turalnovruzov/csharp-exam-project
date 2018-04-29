@@ -73,16 +73,16 @@ namespace csharp_exam_project
         }
         public UserType Type { get; private set; }
 
-        public AbstractUser()
+        public AbstractUser(UserType type)
         {
+            Type = type;
         }
 
-        public AbstractUser(string username, string email, string password, UserType type)
+        public AbstractUser(string username, string email, string password, UserType type) : this(type)
         {
             Username = username;
             EmailAddress = email;
             Password = password;
-            Type = type;
         }
     }
 }

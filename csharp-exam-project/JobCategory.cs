@@ -8,7 +8,7 @@ namespace csharp_exam_project
 {
     public enum JobCategory
     {
-        Programmer,
+        Programmer = 0,
         Doctor,
         Translator,
         Painter,
