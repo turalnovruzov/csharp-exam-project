@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace csharp_exam_project
@@ -12,7 +14,7 @@ namespace csharp_exam_project
         private uint salary;
         private uint age;
 
-        public string Header
+        public string Heading
         {
             get => header;
             set
@@ -107,5 +109,49 @@ namespace csharp_exam_project
             }
         }
 
+        public List<CVPost> Appliers { get; set; }
+
+        public JobPost()
+        {
+            Appliers = new List<CVPost>();
+        }
+
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+
+            str.AppendLine($"Heading: {Heading}");
+            str.AppendLine($"Company name: {CompanyName}");
+            str.AppendLine($"Category: {Enum.GetName(typeof(JobCategory), Category)}");
+            str.AppendLine($"Description: {Description}");
+            str.AppendLine($"City: {City}");
+            str.AppendLine($"Salary: {Salary}");
+            str.AppendLine($"Age: {Age}");
+            str.AppendLine($"Study degree: {StudyDegree}");
+
+            str.Append("Work Experience: ");
+            switch (WorkExperience)
+            {
+                case WorkExperience.LessThanOneYear:
+                    str.AppendLine("Less than 1 year.");
+                    break;
+                case WorkExperience.OneToFourYears:
+                    str.AppendLine("1 to 3 years");
+                    break;
+                case WorkExperience.FourToEightYears:
+                    str.AppendLine("4 to 8 years");
+                    break;
+                case WorkExperience.MoreThanEightYears:
+                    str.AppendLine("More than 8 years");
+                    break;
+                default:
+                    str.AppendLine();
+                    break;
+            }
+
+            str.Append($"Phone number: {PhoneNumber}");
+
+            return str.ToString();
+        }
     }
 }

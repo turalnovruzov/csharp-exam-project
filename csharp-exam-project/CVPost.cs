@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -118,6 +119,22 @@ namespace csharp_exam_project
             return false;
         }
 
+        public override bool Equals(object obj)
+        {
+            var post = obj as CVPost;
+            return post != null &&
+                   Name == post.Name &&
+                   Surname == post.Surname &&
+                   Gender == post.Gender &&
+                   Age == post.Age &&
+                   StudyDegree == post.StudyDegree &&
+                   WorkExperience == post.WorkExperience &&
+                   Category == post.Category &&
+                   City == post.City &&
+                   MinimumSalary == post.MinimumSalary &&
+                   PhoneNumber == post.PhoneNumber;
+        }
+
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
@@ -132,7 +149,7 @@ namespace csharp_exam_project
             switch (WorkExperience)
             {
                 case WorkExperience.LessThanOneYear:
-                    str.AppendLine("Less than 1 year.");
+                    str.AppendLine("Less than 1 year");
                     break;
                 case WorkExperience.OneToFourYears:
                     str.AppendLine("1 to 3 years");
@@ -144,15 +161,18 @@ namespace csharp_exam_project
                     str.AppendLine("More than 8 years");
                     break;
                 default:
+                    str.AppendLine();
                     break;
             }
 
             str.AppendLine($"Category: {Enum.GetName(typeof(JobCategory), Category)}");
             str.AppendLine($"City: {City}");
             str.AppendLine($"Minimum salary: {MinimumSalary}");
-            str.AppendLine($"Phone number: {PhoneNumber}");
+            str.Append($"Phone number: {PhoneNumber}");
 
             return str.ToString();
         }
+
+
     }
 }

@@ -31,7 +31,7 @@ namespace csharp_exam_project
             get
             {
                 List<AbstractUser> list = Employees.ToList<AbstractUser>();
-                list.Concat(Employers.ToList<AbstractUser>());
+                list.AddRange(Employers.ToList<AbstractUser>());
                 return list;
             }
         }

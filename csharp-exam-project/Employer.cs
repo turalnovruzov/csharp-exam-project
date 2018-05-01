@@ -7,7 +7,10 @@ namespace csharp_exam_project
     {
         public List<JobPost> JobPosts { get; set; }
 
-        public Employer() : base(UserType.Employer) { }
+        public Employer() : base(UserType.Employer)
+        {
+            JobPosts = new List<JobPost>();
+        }
 
         public Employer(string username, string emailAddress, string password) : base(username, emailAddress, password, UserType.Employer)
         {

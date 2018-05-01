@@ -53,32 +53,30 @@ namespace csharp_exam_project
         private void SignIn()
         {
             string username, password;
+            
+            View.Write("Username: ");
+            username = Console.ReadLine();
 
-            while (true)
+            View.Write("Password: ");
+            password = Console.ReadLine();
+
+            AbstractUser user = DBUserUtils.LogInCheck(username, password);
+
+            if (user == null)
             {
-                View.Write("Username: ");
-                username = Console.ReadLine();
-
-                View.Write("Password: ");
-                password = Console.ReadLine();
-
-                AbstractUser user = DBUserUtils.LogInCheck(username, password);
-
-                if (user == null)
-                {
-                    View.WriteErrorAndClear("Username or password incorrect.");
-                    break;
-                }
-                else if (user.Type == UserType.Employee)
-                {
-                    View.Clear();
-                    new EmployeeAction().Initialize(user as Employee);
-                }
-                else
-                {
-
-                }
+                View.WriteErrorAndClear("Username or password incorrect.");
             }
+            else if (user.Type == UserType.Employee)
+            {
+                View.Clear();
+                new EmployeeAction().Initialize(user as Employee);
+            }
+            else
+            {
+                View.Clear();
+                new EmployerAction().Initialize(user as Employer);
+            }
+            View.Clear();
         }
 
         private void SignUp()
